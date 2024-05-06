@@ -1,0 +1,12 @@
+.page {
+    width: 100vw;
+    height: 100vh;
+}
+
+.guide-page .main-pic {
+    display: block;
+    width: .86rem;
+    height: .7rem;
+    padding: .93rem 0 .29rem;
+    margin: 0 auto;
+}

@@ -1,0 +1,16 @@
+
+.login {
+    display: flex;
+    justify-content: center;
+    margin-top: .2rem;
+    height: 100vh;
+    &-wrapper {
+        width: 100vw;
+    }
+    .adm-button {
+        box-shadow: 1px 1px 5px #ccc;
+    }
+    .adm-tabs-header {
+        border: none;
+    }
+}

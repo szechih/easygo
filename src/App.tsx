@@ -1,14 +1,19 @@
-import React from 'react';
-import './style/app.css';
+import { Suspense } from 'react';
+import { createHashRouter, RouterProvider } from 'react-router-dom'
+import './style/app.scss';
+import constantRoutes from './router';
+import CustomLoading from './components/CustomLoading';
 
 function App() {
+  const router = createHashRouter([...constantRoutes])
+
   return (
-    <div className="page guide-page">
-      <img
-        className='main-pic'
-        src={require('./images/cart.png')}
-      />
-    </div>
+    <>
+      {/* <Suspense fallback={<Loading />}>{ element }</Suspense> */}
+      <Suspense fallback={<CustomLoading />}>
+        <RouterProvider router={router}/>
+      </Suspense>
+    </>
   );
 }
 

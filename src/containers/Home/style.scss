@@ -1,3 +1,42 @@
 .home {
-    
+    .banner {
+        height: 2.3rem;
+        padding: 0.1rem;
+        background: var(--adm-color-primary);
+        .location {
+            display: inline;
+            vertical-align: baseline;
+            line-height: 1;
+            color: #fff;
+            .iconfont {
+                font-size: .12rem;
+                margin-right: .01rem;
+            }
+        }
+        .search {
+            display: flex;
+            line-height: .24rem;
+            width: 3.4rem;
+            margin: .14rem auto .12rem auto;
+            background: #fff;
+            border: .01rem solid #ccc;
+            border-radius: .2rem;
+            padding: .05rem;
+            .adm-input-element {
+                font-size: .14rem;
+                color: #808080;
+                margin-left: .05rem;
+            }
+        }
+        .swiper-item {
+            height: 1rem;
+            border-radius: .2rem;
+            img {
+                border-radius: .2rem;
+                object-fit: cover;
+                width: 3.55rem;
+                height: 1rem;
+            }
+        }
+    }
 }

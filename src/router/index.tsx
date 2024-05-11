@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import { RouteProps } from '../types'
 // 用路由懒加载优化加载性能
+
 const Guide = lazy(() => import('../containers/Guide'))
 const Login = lazy(() => import('../containers/Login'))
 const Home  = lazy(() => import('../containers/Home'))

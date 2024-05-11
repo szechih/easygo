@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { Toast } from 'antd-mobile';
+import { toast } from './toast';
 const BASE_URL = 'https://mock.mengxuegu.com/mock/6639d9d8cab9671f88bd3226' //请求接口url 如果不配置 则默认访问链接地址
 const TIME_OUT = 20000 // 接口超时时间
 
@@ -28,10 +28,7 @@ request.interceptors.response.use((response) => {
         return response.data
     } 
 },(err)=> {
-    Toast.show({
-        content: err.message,
-        position: 'center'
-    })
+    toast(err.message)
 })
 
 export const useRequest = async (url: string, config: AxiosRequestConfig) => {

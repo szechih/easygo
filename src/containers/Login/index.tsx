@@ -7,7 +7,7 @@ import {
     Toast
  } from 'antd-mobile';
 import { useRequest } from '../../untils/request';
-import {InternalToast} from '../../components/CustomToast';
+import { toast } from '../../untils/toast';
 import './style.scss';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,9 +25,7 @@ function Login () {
     const submit = ()=> {
         const params = form.getFieldsValue()
         if(currentKey == 'register' && params.password !== params.repassword) {
-            (toastRef.current as any).show({
-                content: '两次密码不一致'
-            })
+            toast('两次密码不一致')
             return
         }
         
@@ -36,18 +34,16 @@ function Login () {
             data: {
                 ...params
             }
-        }).then((data: any)=>{
-            if(data.data.code == 200) {
-                const { data: token } = data
-                (toastRef.current as any).show({
-                    content: data.data.data
-                })
-                if(token) {
-                    localStorage.setItem('token', token)
-                    setTimeout(()=>{
-                        navigate('/home')
-                    }, 2000)
-                }
+        }).then((data: any)=>{;
+            toast(data.data.msg)
+
+            if(data.data.token) {
+                localStorage.setItem('token', data.data.token)
+                setTimeout(()=>{
+                    navigate('/home')
+                }, 2000)
+            }else {
+                setCurrentKey('login')
             }
         })
     }
@@ -101,7 +97,7 @@ function Login () {
                     })
                 }
             </Tabs>
-            <InternalToast ref={toastRef}/>
+            {/* <InternalToast ref={toastRef}/> */}
         </div>
     )
 }

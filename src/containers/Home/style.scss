@@ -1,4 +1,6 @@
 .home {
+    background: #F5F9FA;
+    padding-bottom: .5rem;
     .banner {
         height: 2.3rem;
         padding: 0.1rem;
@@ -39,4 +41,63 @@
             }
         }
     }
+    .docker {
+        position: fixed;
+        height: .49rem;
+        border-top: .01rem solid #B3C1C4;
+        background: #FFF;
+        z-index: 100;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        font-size: .12rem;
+        color: #B3C1C4;
+        text-align: center;
+        &-item {
+            flex: 1;
+            .iconfont {
+                font-size: .18rem;
+                margin: .04rem 0;
+            }
+            &-title {
+    
+            }
+        }
+        &-item-active {
+            color: #73D13D;
+        }
+    }
+    .bottom {
+        height: 1rem;
+        line-height: 1rem;
+        color: #B3C1C4;
+        font-size: .12rem;
+        text-align: center;
+        background: #F5F9FA;
+    }
 }
+
+.category {
+    position: relative;
+    margin-top: -.4rem;
+    height: 1.9rem;
+    background: #FFFFFF;
+    border-radius: .2rem .2rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .12rem;
+    color: #242424;
+    &-item {
+        flex: 0 0 25%;
+        text-align: center;
+        &-img {
+            margin-top: .16rem;
+            margin-bottom: .13rem;
+            width: .42rem;
+            height: .36rem;
+        } 
+    }
+    padding-bottom: .2rem;
+}
+

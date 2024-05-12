@@ -1,0 +1,57 @@
+.list-title {
+    padding: .1rem;
+    color: #242424;
+    font-size: .2rem;
+    line-height: .24rem;
+    font-weight: bold;
+    margin-top: .1rem;
+    background: #F5F9FA;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .1rem;
+    padding: 0 .1rem;
+    overflow: hidden;
+    background: #F5F9FA;
+    &-item {
+        background: #fff;
+        position: relative;
+        padding: .10rem;
+        border-radius: .1rem;
+        &-img {
+            
+            width: 100%;
+            aspect-ratio: 1;
+        }
+        &-title {
+            color: #242424;
+            font-size: .12rem;
+            line-height: .18rem;
+            height: .36rem;
+            word-break: break-all;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* 超出几行省略 */
+            text-wrap: wrap;
+            overflow: hidden;
+        }
+        &-price {
+            color: #F81C00;
+            display: inline-block;
+            font-size: .14rem;
+            &-yen {
+                font-size: .12rem;
+            }
+        }
+        .iconfont {
+            position: absolute;
+            right: .05rem;
+            font-size: .16rem;
+            line-height: .16rem;
+            color: #73D13D;
+        }
+    }
+}

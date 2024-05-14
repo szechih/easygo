@@ -6,6 +6,7 @@ const Guide = lazy(() => import('../containers/Guide'))
 const Login = lazy(() => import('../containers/Login'))
 const Home  = lazy(() => import('../containers/Home'))
 const NotFound = lazy(() => import('../containers/NotFound')) 
+const Search = lazy(() => import('../containers/Search')) 
 
 const constantRoutes:RouteProps[] = [ 
   {
@@ -22,6 +23,11 @@ const constantRoutes:RouteProps[] = [
     path: '/home',
     title: '首页',
     element: <Home/> 
+  },
+  {
+    path: '/search',
+    title: '搜索',
+    element: <Search/> 
   },
   { path: '*', title: '404页', element: <NotFound/>}
 ]

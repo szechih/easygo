@@ -1,0 +1,63 @@
+.search-page {
+    font-size: .14rem;
+    .search {
+        &-back-link {
+            text-decoration: none;
+        }
+        padding: .08rem .32rem .06rem 0;
+        display: flex;
+        &-back {
+            line-height: .32rem;
+            width: .48rem;
+            font-size: .18rem;
+            text-align: center;
+            color: #242424; 
+        }
+        &-area {
+            display: flex;
+            line-height: .32rem;
+            background: #F5F9FA;
+            border-radius: .16rem;
+            flex: 1;
+            .search-icon {
+                width: .3rem;
+                text-align: center;
+            }
+            .search-input {
+                flex: 1;
+                background: none;
+                outline: none;
+                color: #242424;
+                padding-right: .2rem;
+            }
+        }
+    }
+    .title {
+        position: relative;
+        padding: .16rem .1rem .11rem .1rem;
+        color: #b1b1b1;
+        line-height: .21rem;
+        &-close {
+            position: absolute;
+            right: .2rem;
+            top: .15rem;
+            font-size: .18rem;
+        }
+    }
+    .search-list {
+        list-style-type: none;
+        overflow: hidden;
+        padding: 0 .1rem;
+        &-item {
+            float: left;
+            border-radius: .16rem;
+            background: #F5F9FA;
+            padding: 0 .1rem;
+            margin-right: .14rem;
+            margin-bottom: .14rem;
+            color: #242424;
+            font-size: .12rem;
+            line-height: .32rem;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRequest } from '../../untils/request';
 import GoodsCard from '../../components/GoodsCard';
 import GoodsList from '../../components/CustomLoading/GoodsList';
+import { useNavigate } from 'react-router-dom';
 interface goodItemProps {
     id: string,
     title:  string,
@@ -21,6 +22,9 @@ function Home() {
     const [banners, setBanners] = useState([])
     const [goods, setGoods] = useState([]) 
     const [list, setList] = useState([])
+
+    const navigate = useNavigate()
+
     useEffect(()=> {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position)=>{
@@ -52,6 +56,10 @@ function Home() {
         })
     }, [])
 
+    const handleSearchClick = () => {
+        navigate('/search')
+    }
+
     return (
         <div className="home page">
             <div className="banner">
@@ -59,7 +67,7 @@ function Home() {
                     <span className="iconfont">&#xe636;</span>
                     优果购(昌平店)
                 </h3>
-                <div className="search">
+                <div className="search" onClick={handleSearchClick}>
                     <span className="iconfont">&#xe603;</span>
                     <Input placeholder='请输入你需要搜索的内容'></Input>
                 </div>

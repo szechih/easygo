@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Input } from 'antd-mobile'
 import './style.scss'
 import { useState, useEffect } from 'react';
@@ -11,6 +11,8 @@ const Search = () => {
     const [historyList, setHistoryList] = useState<string[]>(searchListHistory)
     const [hotList, setHotList] = useState<string[]>([])
     const [keyword, setKeyWord] = useState('')
+    const params = useParams<{shopId: string}>()
+    const navigate = useNavigate()
 
     useEffect(()=> {
         useRequest('/hot',{}).then((data:any)=> {
@@ -19,24 +21,37 @@ const Search = () => {
                 
             }
         })
-    })
+    },[])
 
     const handleKeyDown = (e: any) => {
-        if(e.key == 'Enter') {
-            const newHistoryList = [...historyList]
-            newHistoryList.unshift(keyword)
-            if(newHistoryList.length >= 20) {
-                newHistoryList.length = 20
+        if(e.key == 'Enter' && keyword) {
+            let newHistoryList:string[] = []
+            if(!historyList.find(item=> item == keyword)) {
+                newHistoryList = [...historyList]
+                newHistoryList.unshift(keyword)
+                if(newHistoryList.length >= 20) {
+                    newHistoryList.length = 20
+                }
+            }else {
+                newHistoryList = [...historyList]
+                let index = newHistoryList.findIndex(item=> item == keyword)
+                newHistoryList.splice(index, 1)
+                newHistoryList.unshift(keyword)
             }
             setHistoryList(newHistoryList)
-            setKeyWord('')
             localStorage.setItem('search-list', JSON.stringify(newHistoryList))
+            navigate(`/search/${params.shopId}/${keyword}`)
+            setKeyWord('')
         }
     }
 
     const handleHistoryListClean = () => {
         setHistoryList([])
         localStorage.setItem('search-list', JSON.stringify([]))
+    }
+
+    const handleKeywordClick = (keyword: string) => {
+        navigate(`/searchlist/${params.shopId}/${keyword}`)
     }
 
     return (
@@ -68,7 +83,13 @@ const Search = () => {
                             {
                                 historyList.map((item, index)=> {
                                     return (
-                                        <li key={index} className="search-list-item">{item}</li>
+                                        <li
+                                            onClick={()=>{handleKeywordClick(item)}}
+                                            key={index}
+                                            className="search-list-item"
+                                        >
+                                            {item}
+                                        </li>
                                     )
                                 })
                             }
@@ -86,7 +107,13 @@ const Search = () => {
                     {
                         hotList.map((item, index)=> {
                             return (
-                                <li key={index} className="search-list-item">{item}</li>
+                                <li
+                                    onClick={()=>{handleKeywordClick(item)}}
+                                    key={index}
+                                    className="search-list-item"
+                                >
+                                    {item}
+                                </li>
                             )
                         })
                     }

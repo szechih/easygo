@@ -57,7 +57,7 @@ function Home() {
     }, [])
 
     const handleSearchClick = () => {
-        navigate('/search')
+        navigate('/search/42')
     }
 
     return (

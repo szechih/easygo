@@ -1,0 +1,110 @@
+.search-list-page {
+    font-size: .14rem;
+    background: #F5F9FA;
+    .search {
+        background: #FFF;
+        &-back-link {
+            text-decoration: none;
+        }
+        padding: .08rem .32rem .06rem 0;
+        display: flex;
+        &-back {
+            line-height: .32rem;
+            width: .48rem;
+            font-size: .18rem;
+            text-align: center;
+            color: #242424; 
+        }
+        &-area {
+            display: flex;
+            line-height: .32rem;
+            background: #F5F9FA;
+            border-radius: .16rem;
+            flex: 1;
+            .search-icon {
+                width: .3rem;
+                text-align: center;
+            }
+            .search-input {
+                flex: 1;
+                background: none;
+                outline: none;
+                color: #242424;
+                padding-right: .2rem;
+            }
+        }
+        &-clear {
+            position: absolute;
+            font-size: .18rem;
+            color: #75818F;
+            right: .4rem;
+            top: .07rem;
+        }
+    }
+    .tab {
+        background: #FFF;
+        display: flex;
+        &-item {
+            flex: 1;
+            line-height: .4rem;
+            text-align: center;
+            color: #B1B1B1;
+            font-size: .14rem;
+        }
+        &-item-active {
+            color: #242424;
+        }
+    }
+    .search-list {
+        padding: 0 .1rem;
+        .item {
+            margin-top: .1rem;
+            background: #FFF;
+            padding: .1rem;
+            display: flex;
+            &-img {
+                width: 1.08rem;
+                aspect-ratio: 1;
+                margin-right: .1rem;
+            }
+            &-content {
+                position: relative;
+                flex: 1;
+            }
+            &-title {
+                color: #242424;
+                font-size: .14rem;
+                line-height: .22rem;
+
+            }
+            &-price {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                color: #F81C00;
+                font-size: .14rem;
+                line-height: .24rem;
+            }
+            &-price-yen {
+                font-size: .12rem;
+                margin-right: .04rem;
+            }
+            &-sales {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                color: #B1B1B1;
+                font-size: .12rem;
+                line-height: .24rem;
+            }
+        }
+    }
+    .bottom {
+        height: 1rem;
+        line-height: 1rem;
+        color: #B3C1C4;
+        font-size: .12rem;
+        text-align: center;
+        background: #F5F9FA;
+    }
+}

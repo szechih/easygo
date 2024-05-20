@@ -5,6 +5,8 @@ import { useRequest } from '../../untils/request';
 import GoodsCard from '../../components/GoodsCard';
 import GoodsList from '../../components/CustomLoading/GoodsList';
 import { useNavigate } from 'react-router-dom';
+import Docker from '../../components/Docker';
+
 interface goodItemProps {
     id: string,
     title:  string,
@@ -156,24 +158,7 @@ function Home() {
             <div className="bottom">
                 -我是有底线的-
             </div>
-            <div className="docker">
-                <div className="docker-item docker-item-active">
-                    <p className="iconfont docker-item-icon">&#xe608;</p>
-                    <p className="docker-item-title">首页</p>
-                </div>
-                <div className="docker-item">
-                    <p className="iconfont docker-item-icon">&#xe84d;</p>
-                    <p className="docker-item-title">分类</p>
-                </div>
-                <div className="docker-item">
-                    <p className="iconfont docker-item-icon">&#xe6af;</p>
-                    <p className="docker-item-title">购物车</p>
-                </div>
-                <div className="docker-item">
-                    <p className="iconfont docker-item-icon">&#xe656;</p>
-                    <p className="docker-item-title">我的</p>
-                </div>
-            </div>
+            <Docker type="index"></Docker>
         </div>
     )
 }

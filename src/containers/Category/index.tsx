@@ -3,6 +3,7 @@ import { Input } from 'antd-mobile'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import { useRequest } from '../../untils/request'
+import Docker from '../../components/Docker'
 
 const Category = ()=> {
     const [keyword, setKeyword] = useState<string>('')
@@ -16,6 +17,8 @@ const Category = ()=> {
         price: number,
         sales: number
     }>>([])
+    const [currentTag, setCurrentTag] = useState<number | null>(null)
+    const [currentCategory, setCurrentCategory] = useState('')
 
     useEffect(()=>{
         useRequest('/categoriesAndTags', {}).then((data:any)=> {
@@ -31,30 +34,26 @@ const Category = ()=> {
         useRequest('/categoryList',{
             method: 'POST',
             data: {
-                tag: '',
+                tag: currentTag,
                 keyword,
-                category: ''
+                category: currentCategory
             }
         }).then((data:any)=> {
             if(data.data.code == 200) {
                 setCategoryList(data.data.data)
             }
         })
-    }, [])
+    }, [keyword,currentTag,currentCategory])
 
     const handleKeyDown = (e:any)=> {
-        if(e.key == 'Enter' && keyword) {
-            console.log("hello world");
-            
+        if(e.key == 'Enter') {
+            setKeyword(e.target.value)
         }
     }
 
     return (
         <div className="page category-page">
             <div className="title">
-                <div className="iconfont" onClick={()=>{navigate(-1)}}>
-                    &#xe7eb;
-                </div>
                 分类
             </div>
             <div className='search'>
@@ -64,20 +63,24 @@ const Category = ()=> {
                         type="text"
                         className="search-input"
                         placeholder="请输入商品名称"
-                        value={keyword}
-                        onChange={e=>setKeyword(e)}
                         onKeyDown={e=> handleKeyDown(e)}
                     />
                 </div>
             </div>
             <div className="cate">
-                <div className="cate-item cate-item-active">全部商品</div>
+                <div
+                    className={currentCategory == '' ? "cate-item cate-item-active" : "cate-item"}
+                    onClick={()=>{setCurrentCategory('')}}
+                >
+                    全部商品
+                </div>
                 {
                     categories && categories.map((item)=>{
                         return (
                             <div
                                 key={item.id}
-                                className="cate-item"
+                                className={currentCategory == item.id ? "cate-item cate-item-active" : "cate-item"}
+                                onClick={()=>{setCurrentCategory(item.id)}}
                             >
                                 {item.name}
                             </div>
@@ -86,13 +89,19 @@ const Category = ()=> {
                 }
             </div>
             <div className="tag">
-                <div className="tag-item tag-item-active">全部</div>
+                <div
+                    className={currentTag == null? "tag-item tag-item-active" : "tag-item"}
+                    onClick={()=>{setCurrentTag(null)}}
+                >
+                    全部
+                </div>
                 {
                     tags && tags.map((item, index)=>{
                         return (
                             <div
                                 key={index}
-                                className="tag-item"
+                                className={currentTag === index ?  "tag-item tag-item-active" : "tag-item"}
+                                onClick={()=>{setCurrentTag(index)}}
                             >
                                 {item}
                             </div>
@@ -127,24 +136,7 @@ const Category = ()=> {
                     })
                 }
             </div>
-            <div className="docker">
-                <div className="docker-item">
-                    <p className="iconfont docker-item-icon">&#xe608;</p>
-                    <p className="docker-item-title">首页</p>
-                </div>
-                <div className="docker-item docker-item-active">
-                    <p className="iconfont docker-item-icon">&#xe84d;</p>
-                    <p className="docker-item-title">分类</p>
-                </div>
-                <div className="docker-item">
-                    <p className="iconfont docker-item-icon">&#xe6af;</p>
-                    <p className="docker-item-title">购物车</p>
-                </div>
-                <div className="docker-item">
-                    <p className="iconfont docker-item-icon">&#xe656;</p>
-                    <p className="docker-item-title">我的</p>
-                </div>
-            </div>
+            <Docker type="category"></Docker>
         </div>
     )
 }

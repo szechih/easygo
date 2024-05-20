@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 import { RouteProps } from '../types'
+import Category from '../containers/Category'
 // 用路由懒加载优化加载性能
 
 const Guide = lazy(() => import('../containers/Guide'))
@@ -8,6 +9,7 @@ const Home  = lazy(() => import('../containers/Home'))
 const NotFound = lazy(() => import('../containers/NotFound')) 
 const Search = lazy(() => import('../containers/Search')) 
 const SearchList = lazy(() => import('../containers/SearchList'))
+const Detail = lazy(() => import('../containers/Detail'))
 
 const constantRoutes:RouteProps[] = [ 
   {
@@ -32,8 +34,18 @@ const constantRoutes:RouteProps[] = [
   },
   {
     path: '/searchlist/:shopId/:keyword',
-    title: '搜索',
+    title: '搜索列表',
     element: <SearchList/> 
+  },
+  {
+    path: '/detail/:id',
+    title: '商品详情',
+    element: <Detail/> 
+  },
+  {
+    path: '/category/',
+    title: '分类',
+    element: <Category/> 
   },
   { path: '*', title: '404页', element: <NotFound/>}
 ]

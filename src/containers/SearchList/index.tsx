@@ -60,18 +60,20 @@ const SearchList = () => {
                 </div>
             </div>
             <div className="search-list">
-                <div className="item">
-                    <img className='item-img' src="http://statics.dell-lee.com/shopping/fresh-4.png" alt="" />
-                    <div className="item-content">
-                        <p className="item-title">广西北海鱿鱼干500g/份</p>
-                        <div className="item-price">
-                            <span className="item-price-yen">&yen;</span>
-                            49.9
-                            
+                <Link to={`/detail/${12}`}>
+                    <div className="item">
+                        <img className='item-img' src="http://statics.dell-lee.com/shopping/fresh-4.png" alt="" />
+                        <div className="item-content">
+                            <p className="item-title">广西北海鱿鱼干500g/份</p>
+                            <div className="item-price">
+                                <span className="item-price-yen">&yen;</span>
+                                49.9
+                                
+                            </div>
+                            <div className="item-sales">已售982</div>
                         </div>
-                        <div className="item-sales">已售982</div>
                     </div>
-                </div>
+                </Link>
             </div>
             <div className="bottom">
                 -我是有底线的-

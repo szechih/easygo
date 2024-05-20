@@ -1,0 +1,183 @@
+.category-page {
+    position: relative;
+    // background: #F5F9FA;
+    .title {
+        position: relative;
+        font-size: .18rem;
+        line-height: .44rem;
+        color: #242424;
+        text-align: center;
+        .iconfont {
+            position: absolute;
+            left: .1rem;
+            top: 0;
+        }
+    }
+    .search {
+        position: relative;
+        background: #FFF;
+        padding: .06rem .1rem;
+        display: flex;
+        &-back {
+            line-height: .32rem;
+            width: .48rem;
+            font-size: .18rem;
+            text-align: center;
+            color: #242424; 
+        }
+        &-area {
+            display: flex;
+            line-height: .32rem;
+            background: #F5F9FA;
+            border-radius: .16rem;
+            flex: 1;
+            .search-icon {
+                width: .3rem;
+                text-align: center;
+            }
+            .search-input {
+                flex: 1;
+                background: none;
+                outline: none;
+                color: #242424;
+                padding-right: .2rem;
+            }
+        }
+        &-clear {
+            position: absolute;
+            font-size: .18rem;
+            color: #75818F;
+            right: .4rem;
+            top: .07rem;
+        }
+    }
+    .cate {
+        position: absolute;
+        left: 0;
+        top: .88rem;
+        bottom: .5rem;
+        width: .96rem;
+        background: #F5F9FA;
+        overflow-y: scroll;
+        &-item {
+            color: #242424;
+            font-size: .14rem;
+            line-height: .52rem;
+            text-align: center;
+            &-active {
+                background: #FFF;
+            }
+        }
+    }
+    .tag {
+        position: absolute;
+        left: .96rem;
+        top: .88rem;
+        right: 0;
+        height: .52rem;
+        font-size: 0;
+        overflow-x: scroll;
+        white-space: nowrap;
+        &-item {
+            margin-top: .1rem;
+            margin-left: .1rem;
+            display: inline-block;
+            font-size: .14rem;
+            width: .7rem;
+            height: .32rem;
+            text-align: center;
+            line-height: .32rem;
+            border-radius: .05rem;
+            &-active {
+                background: #D9F7BE;
+                color: #52C41A;
+            }
+        }
+    }
+    .product {
+        position: absolute;
+        left: .96rem;
+        top: 1.4rem;
+        right: 0;
+        bottom: .5rem;
+        font-size: .14rem;
+        overflow-y: scroll;
+        &-title {
+            margin: .08rem;
+            font-size: .12rem;
+            line-height: .16rem;
+            color: #242424;
+        }
+        &-item {
+            position: relative;
+            display: flex;
+            padding: .1rem;
+            &-img {
+                width: .78rem;
+                height: .78rem;
+                margin-right: .08rem;
+            }
+            &-content {
+                flex: 1;
+            }
+            &-title {
+                color: #242424;
+                font-size: .14rem;
+                line-height: .22rem;
+            }
+            &-sales {
+                margin-top: .1rem;
+                color: #B1B1B1;
+                font-size: .12rem;
+                line-height: .16rem;
+            }
+            &-price {
+                color: #CF1322;
+                line-height: .24rem;
+                font-size: .16rem;
+                margin-top: .1rem;
+                &-yen {
+                    font-size: .12rem;
+                    margin-right: .02rem;
+                }
+            }
+            &-button {
+                position: absolute;
+                bottom: .1rem;
+                right: .1rem;
+                background: var(--adm-color-primary);
+                width: .4rem;
+                height: .24rem;
+                line-height: .24rem;
+                text-align: center;
+                color: #FFF;
+                border-radius: .04rem;
+                font-size: .12rem;
+            }
+        }
+    }
+    .docker {
+        position: fixed;
+        height: .49rem;
+        border-top: .01rem solid #B3C1C4;
+        background: #FFF;
+        z-index: 100;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        font-size: .12rem;
+        color: #B3C1C4;
+        text-align: center;
+        &-item {
+            flex: 1;
+            .iconfont {
+                font-size: .18rem;
+                margin: .04rem 0;
+            }
+        }
+        &-item-active {
+            color: var(--adm-color-primary);
+        }
+    }
+}

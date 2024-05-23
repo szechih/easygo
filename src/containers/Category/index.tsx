@@ -4,6 +4,7 @@ import './style.scss'
 import { useEffect, useState } from 'react'
 import { useRequest } from '../../untils/request'
 import Docker from '../../components/Docker'
+import Popover from '../../components/Popover'
 
 const Category = ()=> {
     const [keyword, setKeyword] = useState<string>('')
@@ -19,6 +20,8 @@ const Category = ()=> {
     }>>([])
     const [currentTag, setCurrentTag] = useState<number | null>(null)
     const [currentCategory, setCurrentCategory] = useState('')
+
+    const [showCart, setShowCart] = useState(false)
 
     useEffect(()=>{
         useRequest('/categoriesAndTags', {}).then((data:any)=> {
@@ -45,10 +48,67 @@ const Category = ()=> {
         })
     }, [keyword,currentTag,currentCategory])
 
-    const handleKeyDown = (e:any)=> {
+    const handleKeyDown = (e:any) => {
         if(e.key == 'Enter') {
             setKeyword(e.target.value)
         }
+    }
+
+    const closeMask = () => {
+        setShowCart(false)
+    }
+
+    const [showProduct, setShowProduct] = useState({
+        id: '',
+        title: '',
+        imgUrl: '',
+        price: 0,
+        count: 0
+    })
+    const handleProductClick = (e: React.MouseEvent, item:{
+        id: string,
+        imgUrl: string,
+        title: string,
+        price: number,
+        sales: number
+    }) => {
+        e.preventDefault()
+        useRequest('/getDetailById', {
+            method: 'POST',
+            data: {
+                id: item.id
+            }
+        }).then((data:any)=> {
+            if(data.data.code == 200) {
+                setShowProduct(data.data.data)
+                setShowCart(true)
+            }
+        })
+        
+    }
+
+    const handelCartNumberChange =(type:'minus' | 'add')=> {
+        const newShowProduct = {...showProduct}
+        const {count} = newShowProduct
+        if(type == 'minus') {
+            newShowProduct.count = (count - 1) < 0 ? 0 : count - 1
+        }else {
+            newShowProduct.count = count + 1
+        }
+        setShowProduct(newShowProduct)
+    }
+
+    const changeCartCount =()=> {
+        useRequest('/cartCountChange', {
+            method: 'POST',
+            data: {
+                count: showProduct.count
+            }
+        }).then((data:any)=> {
+            if(data.data.code == 200) {
+                setShowCart(false)
+            }
+        })
     }
 
     return (
@@ -128,7 +188,7 @@ const Category = ()=> {
                                             <span className="product-item-price-yen">&yen;</span>
                                             {item.price}
                                         </div>
-                                        <div className="product-item-button">
+                                        <div className="product-item-button" onClick={(e)=>handleProductClick(e, item)}>
                                             购买
                                         </div>
                                     </div>
@@ -139,6 +199,40 @@ const Category = ()=> {
                 }
             </div>
             <Docker type="category"></Docker>
+            <Popover show={showCart} blankClickCallback={closeMask}>
+                <div className="popover-cart">
+                    <div className="popover-cart-content">
+                        <img className='popover-cart-content-img' src={showProduct.imgUrl} alt="" />
+                        <div className="popover-cart-content-info">
+                            <div className="popover-cart-content-title">{showProduct.title}</div>
+                            <div className="popover-cart-content-price">
+                                <span className="popover-cart-content-yen">&yen;</span>
+                                {showProduct.price}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="popover-cart-count">
+                        <div className="popover-cart-count-content">
+                            购买数量
+                        </div>
+                        <div className="popover-cart-count-counter">
+                            <div
+                                className="popover-cart-count-button"
+                                onClick={()=>{handelCartNumberChange('minus')}}
+                            >-</div>
+                            <div className="popover-cart-count-text">{showProduct.count}</div>
+                            <div
+                                className="popover-cart-count-button"
+                                onClick={()=>{handelCartNumberChange('add')}}
+                            >+</div>
+                        </div>
+                    </div>
+                    <div className="popover-cart-buttons">
+                        <div className="popover-cart-button" onClick={changeCartCount}>加入购物车</div>
+                        <div className="popover-cart-button">立即购买</div>
+                    </div>
+                </div>
+            </Popover>
         </div>
     )
 }

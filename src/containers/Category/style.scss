@@ -184,3 +184,91 @@
         }
     }
 }
+
+.popover-cart {
+    &-content {
+        padding: .2rem .2rem .34rem .2rem;
+        display: flex;
+        border: .01rem solid #F4F4F4;
+        &-img {
+            margin-right: .48rem;
+            display: block;
+            width: .7rem;
+            aspect-ratio: 1;
+        }
+        &-info {
+
+        }
+        &-title {
+            margin-right: .45rem;
+            line-height: .18rem;
+            color: #242424;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            text-wrap: wrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        &-price {
+            margin-top: .15rem;
+            color: #F81C00;
+            font-size: .2rem;
+            top: .1rem;
+            left: .08rem;
+            &-yen {
+                font-size: .14rem;
+                margin-right: .02rem;
+                font-weight:  normal;
+            }
+        }
+    }
+    &-button {
+        margin: .1rem .16rem;
+        height: .44rem;
+        line-height: .44rem;
+        background: var(--adm-color-primary);
+        border-radius: .22rem;
+        text-align: center;
+        font-size: .16rem;
+        color: #FFF;
+    }
+    &-buttons {
+        display: flex;
+
+    }
+    &-button {
+        flex: 1;
+        font-size: .16rem;
+        margin: .1rem;
+    }
+    &-count {
+        padding: .35rem .16rem;
+        &-content {
+            display: inline-block;
+            height: .28rem;
+            line-height: .28rem;
+            color: 242424;
+            font-size: .14rem;
+        }
+        &-counter {
+            float: right;
+            font-size: 0;
+        }
+        &-button,&-text {
+            display: inline-block;
+            font-size: .18rem;
+            line-height: .28rem;
+            text-align: center;
+            background: #F4F4F4;
+        }
+        &-button {
+            width: .28rem;
+        }
+        &-text {
+            margin: 0 .1rem;
+            padding: 0 .08rem;
+            font-weight: bold;
+        }
+    }
+}

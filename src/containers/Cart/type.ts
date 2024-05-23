@@ -4,11 +4,13 @@ export interface productListType {
     count: string,
     kilo: string,
     price: number,
-    imgUrl: string
+    imgUrl: string,
+    selected?: boolean
 }
 
 export interface cartListType {
     id: string,
     shopTitle: string,
-    cartList : productListType[]
+    cartList : productListType[],
+    selected?: boolean
 }

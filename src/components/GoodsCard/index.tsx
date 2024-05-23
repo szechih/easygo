@@ -1,7 +1,9 @@
 import { propsType } from './type'
 import './style.scss'
+import { Link } from 'react-router-dom'
 
 const GoodsCard: React.FC<propsType> =({ cateItem })=> {
+
     return (
         <div className="card">
                 <h3 className="card-title">
@@ -19,19 +21,21 @@ const GoodsCard: React.FC<propsType> =({ cateItem })=> {
                     {
                         cateItem.list && cateItem.list.map(item=>{
                             return (
-                                <div key={item.id} className="card-content-item">
-                                    <img
-                                        className='card-content-item-img'
-                                        src={item.imgUrl}
-                                        alt=""
-                                    />
-                                    <p className='card-content-item-desc'>{item.title}</p>
-                                    <p className="card-content-item-price">
-                                        <span className='card-content-item-price-yen'>&yen;</span>
-                                        {item.price}
-                                    </p>
-                                    <span className='iconfont'>&#xe653;</span>
-                                </div>
+                                <Link to={`/detail/${item.id}`}>
+                                    <div key={item.id} className="card-content-item">
+                                        <img
+                                            className='card-content-item-img'
+                                            src={item.imgUrl}
+                                            alt=""
+                                        />
+                                        <p className='card-content-item-desc'>{item.title}</p>
+                                        <p className="card-content-item-price">
+                                            <span className='card-content-item-price-yen'>&yen;</span>
+                                            {item.price}
+                                        </p>
+                                        <span className='iconfont'>&#xe653;</span>
+                                    </div>
+                                </Link>
                             )
                         })
                     }

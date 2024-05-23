@@ -1,6 +1,9 @@
 .category-page {
     position: relative;
     // background: #F5F9FA;
+    a {
+        text-decoration: none;
+    }
     .title {
         position: relative;
         font-size: .18rem;

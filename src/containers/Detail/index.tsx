@@ -3,6 +3,7 @@ import './style.scss'
 import { useEffect, useState } from 'react'
 import { useRequest } from '../../untils/request'
 import resType from './type'
+import Popover from '../../components/Popover'
 
 const Detail = () => {
     const [resData, setResData] = useState<resType>({
@@ -18,9 +19,21 @@ const Detail = () => {
     })
     const navigate = useNavigate()
     const params = useParams()
+    const [showCart, setShowCart] = useState(false)
+    // 购物车已添加数量
+    const [cartCount, setCartCount] = useState(0)
+    const [count, setCount] = useState(0)
 
     useEffect(()=> {
-        
+        useRequest('/cartCount', {}).then((data:any)=> {
+            if(data.data.code == 200) {
+                setCartCount(data.data.count)
+                setCount(data.data.count)
+            }
+        })
+    }, [])
+
+    useEffect(()=> {
         useRequest('/detail', {
             method: 'POST',
             data: {
@@ -33,6 +46,31 @@ const Detail = () => {
         })
     }, [])
 
+    const changeCount =(count:number)=> {
+        if(count < 0) {
+            setCount(0)
+        }else
+            setCount(count)
+    }
+
+    const handleInitCount = () => {
+        setShowCart(false)
+        setCount(cartCount)
+    }
+
+    const changeCartCount =()=> {
+        useRequest('/cartCountChange', {
+            method: 'POST',
+            data: {
+                count: cartCount
+            }
+        }).then((data:any)=> {
+            if(data.data.code == 200) {
+                setShowCart(false)
+                setCartCount(count)
+            }
+        })
+    }
     return (
         <div className="page detail-page">
             <div className="title">
@@ -75,12 +113,42 @@ const Detail = () => {
             </div>
             <div className="docker">
                 <div className="cart-icon">
-                     <div className="iconfont">&#xe600;</div>
+                     <div className="iconfont">
+                        &#xe600;
+                        {
+                            cartCount ? <span className='iconfont-tips'>{cartCount}</span> : null
+                        }
+                     </div>
                      <div className="icon-text">购物车</div>
                 </div>
                
-                <div className="cart-button">加入购物车</div>
+                <div className="cart-button" onClick={()=>setShowCart(true)}>加入购物车</div>
             </div>
+            <Popover show={showCart} blankClickCallback={handleInitCount}>
+                <div className="popover-cart">
+                    <div className="popover-cart-content">
+                        <img className='popover-cart-content-img' src={resData.imgUrl} alt="" />
+                        <div className="popover-cart-content-info">
+                            <div className="popover-cart-content-title">{resData.title}</div>
+                            <div className="popover-cart-content-price">
+                                <span className="popover-cart-content-yen">&yen;</span>
+                                {resData.price}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="popover-cart-count">
+                        <div className="popover-cart-count-content">
+                            购买数量
+                        </div>
+                        <div className="popover-cart-count-counter">
+                            <div className="popover-cart-count-button" onClick={()=>{changeCount(count-1)}}>-</div>
+                            <div className="popover-cart-count-text">{count}</div>
+                            <div className="popover-cart-count-button" onClick={()=>{changeCount(count+1)}}>+</div>
+                        </div>
+                    </div>
+                    <div className="popover-cart-button" onClick={changeCartCount}>加入购物车</div>
+                </div>
+            </Popover>
         </div>
     )
 }

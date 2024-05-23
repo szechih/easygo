@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd-mobile'
 import './style.scss'
 import { useEffect, useState } from 'react'
@@ -114,24 +114,26 @@ const Category = ()=> {
                 {
                     categoryList && categoryList.map(item=> {
                         return (
-                            <div key={item.id} className="product-item">
-                                <img className="product-item-img" src={item.imgUrl} alt="" />
-                                <div className="product-item-content">
-                                    <div className="product-item-title">
-                                        {item.title}
-                                    </div>
-                                    <div className="product-item-sales">
-                                        月售{item.sales}
-                                    </div>
-                                    <div className="product-item-price">
-                                        <span className="product-item-price-yen">&yen;</span>
-                                        {item.price}
-                                    </div>
-                                    <div className="product-item-button">
-                                        购买
+                            <Link to={`/detail/${item.id}`}>
+                                <div key={item.id} className="product-item">
+                                    <img className="product-item-img" src={item.imgUrl} alt="" />
+                                    <div className="product-item-content">
+                                        <div className="product-item-title">
+                                            {item.title}
+                                        </div>
+                                        <div className="product-item-sales">
+                                            月售{item.sales}
+                                        </div>
+                                        <div className="product-item-price">
+                                            <span className="product-item-price-yen">&yen;</span>
+                                            {item.price}
+                                        </div>
+                                        <div className="product-item-button">
+                                            购买
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         )
                     })
                 }

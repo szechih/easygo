@@ -10,6 +10,7 @@ const NotFound = lazy(() => import('../containers/NotFound'))
 const Search = lazy(() => import('../containers/Search')) 
 const SearchList = lazy(() => import('../containers/SearchList'))
 const Detail = lazy(() => import('../containers/Detail'))
+const Cart = lazy(() => import('../containers/Cart'))
 
 const constantRoutes:RouteProps[] = [ 
   {
@@ -46,6 +47,11 @@ const constantRoutes:RouteProps[] = [
     path: '/category/',
     title: '分类',
     element: <Category/> 
+  },
+  {
+    path: '/cart/',
+    title: '购物车',
+    element: <Cart/> 
   },
   { path: '*', title: '404页', element: <NotFound/>}
 ]

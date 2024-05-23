@@ -1,0 +1,152 @@
+.cart-page {
+    background: #F5F9FA;
+    overflow-y: scroll;
+    padding-bottom: 1.12rem;
+    .title {
+        background: #FFF;
+        position: relative;
+        font-size: .18rem;
+        line-height: .44rem;
+        color: #242424;
+        text-align: center;
+        .iconfont {
+            position: absolute;
+            left: .1rem;
+            top: 0;
+        }
+    }
+    .radio {
+        position: absolute;
+        display: inline-block;
+        top: 50%;
+        transform: translateY(-50%);
+        left: .1rem;
+        width: .24rem;
+        aspect-ratio: 1;
+        border-radius: .2rem;
+        border: .01rem solid #B1B1B1;
+    }
+    .shop {
+        margin-top: .1rem;
+        background: #FFF;
+        &-title {
+            position: relative;
+            line-height: .24rem;
+            padding-top: .12rem;
+            padding-bottom: .04rem;
+            padding-left: .48rem;
+            font-size: .16rem;
+            .iconfont {
+                // margin-left: .18rem;
+                margin-right: .08rem;
+            }
+            .radio {
+                top: .25rem;
+            }
+        }
+        &-products {
+            padding: .16rem .1rem .16rem 0;
+        }
+        &-product {
+            position: relative;
+            display: flex;
+            &-img {
+                display: block;
+                margin-left: .48rem;
+                width: .96rem;
+                aspect-ratio: 1;
+                margin-right: .08rem;
+            }
+            &-content {
+                position: relative;
+                width: calc(100% - .96rem);
+            }
+            &-title {
+                color: #242424;
+                font-size: .14rem;
+                line-height: .22rem;
+                text-wrap: wrap;
+                word-break: break-all;
+                -webkit-line-clamp: 2;
+                text-wrap: wrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+            &-kilo {
+                margin-top: .08rem;
+                color: #B1B1B1;
+                font-size: .12rem;
+                line-height: .18rem;
+            }
+            &-price {
+                margin-top: .14rem;
+                color: #CF1322;
+                font-size: .16rem;
+                &-yen {
+                    font-size: .12rem;
+                }
+            }
+            &-count {
+                position: absolute;
+                right: .1rem;
+                bottom: 0;
+                display: block;
+                height: .24rem;
+                line-height: .24rem;
+                width: .4rem;
+                font-size: 24rem;
+                .adm-input-element {
+                    position: absolute;
+                    border: .01rem solid #CCC;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .total-price {
+        background: #FFF;
+        display: flex;
+        position: fixed;
+        bottom: .5rem;
+        left: 0;
+        right: 0;
+        font-size: .15rem;
+        line-height: .5rem;
+        height: .5rem;
+        .select-all {
+            width: .94rem;
+            &-text {
+                margin-left: .44rem;
+                color: #BBB;
+            }
+        }
+        .total {
+            flex: 1;
+            display: flex;
+            &-text {
+                width: 0.8rem;
+                font-size: .15rem;
+                color: #242424;
+                text-align: right;
+            }
+            &-price-inner {
+                flex: 1;
+                text-align: center;
+                color: #CF1322;
+                font-size: .18rem;
+                margin-right: .08rem;
+                &-yen {
+                    font-size: .12rem;
+                }
+            }
+        }
+        .check {
+            width: 1.35rem;
+            background: var(--adm-color-primary);
+            text-align: center;
+            color: #FFF;
+        }
+    }
+}

@@ -22,6 +22,7 @@ export interface dataType {
     },
     time: string,
     total: string,
+    money: string,
     list: shopType[]
 }
 

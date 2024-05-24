@@ -1,15 +1,24 @@
 import { useEffect, useState } from 'react'
 import './style.scss'
 import { useRequest } from '../../untils/request'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { dataType, addressType } from './type'
 import Popover from '../../components/Popover'
+import { Picker } from 'antd-mobile'
+import { toast } from '../../untils/toast'
 
 function Order () {
     const {orderId} = useParams()
     const [data, setData] = useState<dataType>()
     const [showAddress, setShowAddress] = useState(false)
     const [addressList, setAddressList] = useState<Array<addressType>>([])
+    const [timeColumns, setTimeColumns] = useState([])
+    const [showTimeColumns, setShowTimeColumns] = useState(false)
+    const [deliveryTime, setDeliveryTime] = useState('')
+    const [showPayment, setShowPayment] = useState(false)
+    const [payway, setPayway] = useState('weixin')
+
+    const navigate = useNavigate()
     
     useEffect(()=> {
         useRequest('/getOrder', {
@@ -19,13 +28,22 @@ function Order () {
             }
         }).then((data:any)=> {
             if(data.data.code == 200) {
-                const {information, time, total, list} = data.data
+                const {information, time, total, list, money} = data.data
                 setData({
                     information,
                     time,
                     total,
-                    list
+                    list,
+                    money
                 })
+            }
+        })
+    }, [])
+
+    useEffect(()=>{
+        useRequest('/orderTime', {}).then((data:any)=> {
+            if(data.data.code == 200) {
+                setTimeColumns(data.data.columns)
             }
         })
     }, [])
@@ -45,6 +63,30 @@ function Order () {
             setData(newData)
             setShowAddress(false)
         }
+    }
+
+    const handleOrderSubmit =()=> {
+        
+        if(deliveryTime == '') return toast('请选择配送时间')
+        const addressId = data?.information.id
+        
+        useRequest('/submitOrder', {
+            method: 'POST',
+            data: {
+                orderId,
+                addressId,
+                deliveryTime,
+                payway
+            }
+        }).then((data:any)=> {
+            if(data.data.code == 200) {
+                toast('支付成功')
+                setShowPayment(false)
+                setTimeout(()=>{
+                    navigate('/home')
+                }, 2000)
+            }
+        })
     }
 
     return (
@@ -67,7 +109,10 @@ function Order () {
             </div>
             <div className="delivery">
                 <div className="delivery-text">送达时间</div>
-                <div className="delivery-select">{data!.time}</div>
+                <div
+                    className="delivery-select"
+                    onClick={()=>setShowTimeColumns(true)}
+                >{deliveryTime ? deliveryTime : '请选择'}</div>
             </div>
             {
                 data!.list && data!.list.map(shop=> {
@@ -114,7 +159,7 @@ function Order () {
                         {data!.total}
                     </span>
                 </div>
-                <div className="footer-submit">提交订单</div>
+                <div className="footer-submit" onClick={()=>setShowPayment(true)}>提交订单</div>
             </div>
             <Popover
                 show={showAddress}
@@ -138,6 +183,51 @@ function Order () {
                     <div className="add-address-button">+新增地址</div>
                 </div>
             </Popover>
+            <Popover show={showPayment} blankClickCallback={()=>setShowPayment(false)}>
+                    <div className='payment-popover'>
+                        <div className="payment-popover-title">选择支付方式</div>
+                        <div className="payment-popover-price">&yen; {data.total}</div>
+                        <div className="payment-popover-products">
+                            <div className="payment-popover-product" onClick={()=>setPayway('weixin')}>
+                                <img
+                                    className='payment-popover-img'
+                                    src="http://statics.dell-lee.com/shopping/weixin.png"
+                                    alt="weixin" />
+                                微信
+                                <div 
+                                    className={ payway == 'weixin' ? 'radio radio-active' : 'radio' }
+                                >{ payway == 'weixin' ? '✔' : '' }</div>
+                            </div>
+                            <div className="payment-popover-product" onClick={()=>setPayway('cash')}>
+                                <img
+                                    className='payment-popover-img'
+                                    src="http://statics.dell-lee.com/shopping/cash.png"
+                                    alt="yue" />
+                                余额（&yen;{data.money}）
+                                <div 
+                                    className={ payway == 'cash' ? 'radio radio-active' : 'radio' }
+                                >{ payway == 'cash' ? '✔' : '' }</div>
+                            </div>
+                        </div>
+                        <div className='payment-popover-button' onClick={()=>handleOrderSubmit()}>立即支付</div>
+                    </div>
+            </Popover>
+            {
+                timeColumns ? 
+                    <Picker
+                        columns={timeColumns}
+                        visible={showTimeColumns}
+                        onClose={()=> {
+                            setShowTimeColumns(false)
+                        }}
+                        onConfirm={(v)=> {
+                            const time = `${v[0]} ${v[1]}:${v[2]}`
+                            setDeliveryTime(time)
+                            setShowTimeColumns(false)
+                        }}
+                    ></Picker> :null
+            }
+            
         </div> : null
     )
 }

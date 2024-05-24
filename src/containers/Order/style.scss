@@ -193,4 +193,66 @@
             border-radius: .22rem;
         }
     }
+    .payment-popover {
+        font-size: .14rem;
+        padding-bottom: .5rem;
+        &-title {
+            line-height: .48rem;
+            text-align: center;
+            font-size: .14rem;
+        }
+        &-price {
+            color: var(--adm-color-primary);
+            font-size: .24rem;
+            line-height: .28rem;
+            text-align: center;
+        }
+        &-products {
+            margin: 0 .16rem .3rem .16rem;
+        }
+        &-product {
+            position: relative;
+            height: .48rem;
+            line-height: .48rem;
+            font-size: .14rem;
+        }
+        &-img {
+            display: block;
+            float: left;
+            width: .28rem;
+            aspect-ratio: 1;
+            margin-top: .1rem;
+            margin-right: .18rem;
+        }
+        .radio {
+            position: absolute;
+            display: inline-block;
+            top: 50%;
+            transform: translateY(-50%);
+            right: .1rem;
+            width: .24rem;
+            aspect-ratio: 1;
+            border-radius: .2rem;
+            border: .01rem solid #B1B1B1;
+            &-active {
+                color: #FFF;
+                text-align: center;
+                line-height: .24rem;
+                background: var(--adm-color-primary);
+                border: none;
+            }
+        }
+        &-button {
+            position: absolute;
+            bottom: .1rem;
+            left: .1rem;
+            right: .1rem;
+            text-align: center;
+            color: #FFF;
+            background: var(--adm-color-primary);
+            height: .48rem;
+            line-height: .48rem;
+            border-radius: .22rem;
+        }
+    }
 }

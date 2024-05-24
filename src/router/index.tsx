@@ -11,6 +11,7 @@ const Search = lazy(() => import('../containers/Search'))
 const SearchList = lazy(() => import('../containers/SearchList'))
 const Detail = lazy(() => import('../containers/Detail'))
 const Cart = lazy(() => import('../containers/Cart'))
+const Order = lazy(() => import('../containers/Order'))
 
 const constantRoutes:RouteProps[] = [ 
   {
@@ -52,6 +53,11 @@ const constantRoutes:RouteProps[] = [
     path: '/cart/',
     title: '购物车',
     element: <Cart/> 
+  },
+  {
+    path: '/order/:orderId',
+    title: '确认订单',
+    element: <Order/> 
   },
   { path: '*', title: '404页', element: <NotFound/>}
 ]

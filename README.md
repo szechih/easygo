@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+<div align="center">
+    <img alt="Easy Go" width="120" height="120" src="./public/favicon.ico">
+	<p align="center">
+		<a href="https://react.docschina.org/" target="_blank">
+			<img src="https://img.shields.io/badge/react-^18.2.0-success" alt="react">
+		</a>
+		<a href="https://4x.ant.design/docs/react/introduce-cn" target="_blank">
+			<img src="https://img.shields.io/badge/antd-^4.24.8-blue" alt="antd-mobile">
+		</a>
+		<a href="https://www.tslang.cn/" target="_blank">
+	        <img src="https://img.shields.io/badge/typescript-^4.9.3-informational" alt="typescript">
+	    </a>
+		<a href="https://vitejs.dev/" target="_blank">
+		    <img src="https://img.shields.io/badge/vite-^4.2.0-success" alt="vite">
+		</a>
+		<a href="./LICENSE" target="_blank">
+		    <img src="https://img.shields.io/badge/license-MIT-red" alt="license">
+		</a>
+	</p>
+    <h1>Easy Go</h1>
+	<p>&nbsp;</p>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ⚡ 简介
 
-## Available Scripts
+Easy Go， 基于 `React18`,`TypeScript`,`webpack5`,`antd-mobile`等相关主流技术开发，一个免费开源的移动端网页购物平台，也可适用于学习`React`时进行参考或练手的项目。
 
-In the project directory, you can run:
+<p align="center">
+    <img alt="Easy Go" width="100%" src="./src/assets/preview/preview1.png">
+    <img alt="Easy Go" width="100%" src="./src/assets/preview/preview2.png">
+    <img alt="Easy Go" width="100%" src="./src/assets/preview/preview3.png">
+    <img alt="Easy Go" width="100%" src="./src/assets/preview/preview4.png">
+</p>
 
-### `npm start`
+## ⭐ 仓库地址
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   [https://github.com/szechih/easygo]：- GitHub 仓库，⭐ 欢迎 Star，感谢支持
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🔨 安装
 
-### `npm test`
+-   克隆项目
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/szechih/easygo.git
+```
 
-### `npm run build`
+-   安装依赖
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cd easygo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+cnpm install
+yarn install
+//安装失败，请升级 nodejs 到 16 以上
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-   运行项目
 
-### `npm run eject`
+```bash
+npm run dev
+yarn dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-   打包项目
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run build
+yarn build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🌈 线上接口
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+本地采用 Mock 数据，线上采用 EasyMock：
 
-## Learn More
+-   EasyMock：https://mock.mengxuegu.com/mock/6639d9d8cab9671f88bd3226
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📑 浏览器支持
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| ![Edge](https://i.imgtg.com/2023/04/11/8zr3p.png) | ![Firefox](https://i.imgtg.com/2023/04/11/8zKiU.png) | ![Chrome](https://i.imgtg.com/2023/04/11/8zNrx.png) | ![Safari](https://i.imgtg.com/2023/04/11/8zeGj.png) |
+| :-: | :-: | :-: | :-: |
+| last 2 versions | last 2 versions | last 2 versions | last 2 versions |
